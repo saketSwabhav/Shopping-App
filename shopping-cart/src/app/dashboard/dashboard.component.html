@@ -1,0 +1,73 @@
+<app-navbar (updateModal)="showUpdate(order)"></app-navbar>
+<h1>
+  Product Table
+</h1>
+<hr>
+
+<table id="users">
+  <tr>
+    <th *ngFor = "let column of headers">
+      {{column}}
+    </th>
+    <th>
+      Action
+    </th>
+  </tr>
+
+  <tr *ngFor = "let product of products">
+    <!-- <td *ngFor = "let column of headers">
+      {{product[column]}}
+    </td> -->
+    <!-- {{product }} -->
+    <td>{{product.itemName || ""}}</td>
+    <td>{{product.itemDesc || ""}}</td>
+    <td>{{product.itemPrice || ""}}</td>
+    <td>
+        <button id="row" class="btn btn-primary" (click)="PostData(content,product)">Buy Now</button>
+     </td>
+  </tr>
+
+</table>
+
+<ng-template #content let-modal>
+
+  <div class="modal-header">
+    <h4 class="modal-title">You are Buying</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <h6>Product</h6>
+    <p>Name: {{Product.itemName}}</p>
+    <p>Type: {{Product.itemDesc}}</p>
+    <p>Price: {{Product.itemPrice}}</p>
+    <app-checkout [Product]="Product" (closeModal)="modal.dismiss('Close Click')"></app-checkout>
+  </div>
+
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Close click')">Close</button>
+  </div>
+</ng-template>
+
+<ng-template #order let-modal>
+
+  <div class="modal-header">
+    <h4 class="modal-title">Update Your Details</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+  <app-user-details ></app-user-details>
+  </div>
+
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Close click')">Close</button>
+  </div>
+</ng-template>
+
+
+<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">  
+  <p style="color: white">Please Wait. </p>  
+  </ngx-spinner> 

@@ -1,0 +1,95 @@
+<link rel="stylesheet" href="https://unpkg.com/@coreui/coreui/dist/css/coreui.min.css" />
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<div class="container">
+  <h4 class="p-2">Checkout Form</h4>
+  <form [formGroup]="checkoutForm" (ngSubmit)="postData()">
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="inputEmail4">Email</label>
+        <input type="email" class="form-control" id="inputEmail4" formControlName="email" />
+        <span *ngIf="
+            checkoutForm.get('email')?.touched &&
+            checkoutForm.get('email')?.hasError('required')
+          ">
+          Enter Email Address</span>
+        <span *ngIf="
+            checkoutForm.get('email')?.touched &&
+            checkoutForm.get('email')?.hasError('email')
+          ">
+          Enter Valid Email Address</span>
+      </div>
+      <!-- <div class="form-group col-md-6">
+        <label for="inputPassword4">Password</label>
+        <input type="password" class="form-control" id="inputPassword4">
+      </div> -->
+    </div>
+    <div class="form-group">
+      <label for="inputAddress">Address</label>
+      <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St" formControlName="address" />
+      <span *ngIf="
+          checkoutForm.get('address')?.touched &&
+          checkoutForm.get('address')?.hasError('required')
+        ">
+        Enter Shipping Address</span>
+      <span *ngIf="
+          checkoutForm.get('address')?.touched &&
+          checkoutForm.get('address')?.hasError('minlength')
+        ">
+        Enter Valid Address</span>
+    </div>
+    <!-- <div class="form-group">
+      <label for="inputAddress2">Address 2</label>
+      <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor" formControlName="apartment">
+    </div> -->
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="inputCity">City</label>
+        <input type="text" class="form-control" id="inputCity" formControlName="city" />
+        <span *ngIf="
+            checkoutForm.get('city')?.touched &&
+            checkoutForm.get('city')?.hasError('required')
+          ">
+          Enter Shipping City</span>
+      </div>
+      <!-- <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="inputCity">State</label>
+          <input type="text" class="form-control" id="inputState" formControlName="State">
+        </div> -->
+      <div class="form-group col-md-4">
+        <label for="inputState">State</label>
+        <select id="inputState" class="form-control" formControlName="state">
+          <option selected>Choose...</option>
+          <option>Maharashtra</option>
+        </select>
+        <span *ngIf="
+            checkoutForm.get('state')?.touched &&
+            checkoutForm.get('state')?.hasError('required')
+          ">
+          Enter Shipping City</span>
+      </div>
+      <div class="form-group col-md-2">
+        <label for="inputZip">Zip</label>
+        <input type="text" class="form-control" id="inputZip" formControlName="zip" />
+        <span *ngIf="
+            checkoutForm.get('zip')?.touched &&
+            checkoutForm.get('zip')?.hasError('required')
+          ">
+          Enter Shipping Zip</span>
+        <span *ngIf="
+            checkoutForm.get('zip')?.touched &&
+            checkoutForm.get('zip')?.hasError('minlength')
+          ">
+          Enter Valid Zip</span>
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary mt-2" [disabled]="!checkoutForm.valid">
+      Check out
+    </button>
+  </form>
+</div>
+<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">
+  <p style="color: white">Processing Your Order Please Wait. </p>
+</ngx-spinner>

@@ -1,0 +1,26 @@
+<app-navbar></app-navbar>
+<table id="users">
+    <tr>
+      <th *ngFor = "let column of headers">
+        {{column}}
+      </th>
+      
+    </tr>
+  
+    <tr *ngFor = "let Order of orders">
+      <!-- <td *ngFor = "let column of headers">
+        {{Order[column]}}
+      </td> -->
+      <!-- {{Order }} -->
+      
+      <td>{{Order.products.itemName || ""}}</td>
+      <td>{{Order.products.itemDesc || ""}}</td>
+      <td>{{Order.products.itemPrice || ""}}</td> 
+      <td>{{Order.isPaid==true? "yes": "no" || ""}}</td>
+      <td>{{Order.quantity || ""}}</td>
+     
+     
+    </tr>
+  
+  </table>
+  
